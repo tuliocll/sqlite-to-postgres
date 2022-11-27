@@ -2,18 +2,17 @@
 
 ![Logo](doc/logo.jpg)
 
-Ferramenta desenvolvida para migrar dados de um banco de dados Sqlite para Postgres.
-Atualmente você pode:
+Tool designed to migrate data from a Sqlite database to Postgres. Currently, you can:
 
-- Pegar os dados de uma tabela no Sqlite.
-- Gerar um arquivo de insert SQL.
-- Inserir diretamente os dados migrados no Postgres.
-- Suporta conexão via SSL com certificado.
-- Ativar Debug das querys.
+- Take the data from a table in Sqlite. 
+- Generate a SQL insert file. 
+- Directly enter the migrated data in Postgres. 
+- Supports connection via SSL with certificate. 
+- Activate Query Debug.
 
-## Como usar
+## Who to use
 
-Primeiro passo, clone o repositorio e instale as dependencias:
+First, clone this repo and install deps:
 
 ```bash
 git clone git@github.com:tuliocll/sqlite-to-postgres.git
@@ -23,37 +22,38 @@ cd sqlite-to-postgres
 yarn
 ```
 
-No arquivo `index.js` na linha `38` digite o nome da tabela e a model dessa tabela (mais a baixo vamos ver como criar uma model). Em seguida, configure o Sqlite (na sessão mais abaixo) e o Postgres(mais abaixo também), agora basta rodar o comando `yarn run`.
+On `index.js` file at `38` line, put the name of the table and the model (further down let's see how to create a model). Then configure Sqlite (in the session below) and Postgres, now run the command `yarn run`.
 
 ## Model
 
-Uma model aqui na ferramenta é a representação da sua tabela no banco de dados em formato de `Object`, contendo apenas o nome(`key`) e o tipo(`value`) e sendo exportado como default, por exemplo, para uma tabela como essa:
+A model here in the tool is the representation of your table in the SQLITE in 'Object' format, containing only the name ('key') and the type ('value') and being exported as default, for example:
 
+> Table
 ![Schema de uma tabela chamada "post" no Sqlite](doc/model-sqlite.jpg)
 
-Teremos um objeto dessa forma:
-
+> Model
 ![Objeto de uma tabela chamada "post" no Javascript](doc/model-js.jpg)
 
-A Model serve para que possamos mapear o tipo de cada campo, para que possamos converte-los de forma adequada, por tanto os tipos suportados para cada campo pode ser encontrado no arquivo [Types.js](src/utils/types.js).
+The Model is so that we can map the type of each field, so that we can convert them appropriately, supported types for each field can be found in the file [Types.js](src/utils/types.js).
 
-As Models por padrão devem ser criadas em `database/Models/`.
+By default, models must be created in `database/Models/`
 
-## Configurando Sqlite
 
-Para configurar o Sqlite basta colocar o banco de dados na pasta `database` e renomea-lo para `data.db`.
+## Setup Sqlite
 
-> Caso queira editar o caminho e o nome, basta o arquivo de configuração [config.js](src/config/config.js).
+Put the Sqlite database on folder `database` and rename it to `data.db`.
 
-## Configurando Postgres
+> You can change the path and database name too, edit the [config.js](src/config/config.js) file.
 
-Toda Configuração do Postgres fica no arquivo `.env`, basta criar esse arquivo usando o `env.example` como base e trocar apenas as configurações.
+## Setup Postgres
 
-> Para utilizar certificado na sua conexão Postgres basta copiar o certificado para a pasta `certs` e renomea-lo para `certificate.crt`.
+All Postgres configuration will on the `.env` file, just copy the `.env.example` file and fill with your informations.
 
-## Opções
+> If you want to use a certificate to yout Postgres connection, copy the certficate file to the folder `certs` and rename it to `certificate.crt`.
 
-No arquivo `.env` ainda é possivel configurar duas opções:
+## Options
+
+> `.env` options
 
 | Config      | Descrição                                                               |
 | ----------- | ----------------------------------------------------------------------- |
